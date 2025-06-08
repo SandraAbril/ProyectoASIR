@@ -9,3 +9,11 @@ db_data/
 # Archivos del sistema
 .DS_Store
 Thumbs.db
+
+# Ignorar contenedores, volúmenes, temporales y sistema
+vendor/
+node_modules/
+.env
+docker/mysql/
+db_data/
+*.log
