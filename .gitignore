@@ -1,0 +1,11 @@
+# Dependencias comunes
+node_modules/
+vendor/
+
+# Archivos y carpetas generadas por contenedores
+db_data/
+*.log
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
