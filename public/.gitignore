@@ -1,0 +1,19 @@
+# Dependencias comunes
+node_modules/
+vendor/
+
+# Archivos y carpetas generadas por contenedores
+db_data/
+*.log
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Ignorar contenedores, volúmenes, temporales y sistema
+vendor/
+node_modules/
+.env
+docker/mysql/
+db_data/
+*.log
