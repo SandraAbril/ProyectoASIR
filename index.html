@@ -27,7 +27,9 @@
     </nav>
     <header class="main-header">
         <div class="header-left">
-          <img src="src/Logo.jpeg" alt="Logo" width="150" height="60">
+          <a href="./index.html">
+            <img src="src/Logo.jpeg" alt="Logo" width="160" height="60">
+          </a>
         </div>
       
         <div class="header-center">
@@ -36,18 +38,25 @@
         </div>
       
         <div class="header-right">
-          <button class="promo-btn">PROMOCIONES</button>
+          <div class="promo-dropdown">
+            <button class="promo-btn">
+              PROMOCIONES <span class="arrow-icon">▼</span>
+            </button>
+            <div class="promo-menu">
+              <a href="#">⚡ Ofertas Flash</a>
+              <a href="#">🎁 Regalos por compra</a>
+              <a href="#">% Promociones activas</a>
+            </div>
+          </div>
           <span class="icon">​🇪🇸</span>
           <span class="icon">📰</span>
           <span class="icon">📍</span>
-            <span class="icon">👤</span>
+          <span class="icon">👤</span>
           <span class="icon">🤍</span>
           <span class="icon">🛍️</span>
         </div>
-      </header>
-      
-
-    <script src="./js/script.js"></script>
-
+    </header>
+<script src="./js/script.js"></script>
+<script src="./js/BotonPromos.js"></script>
 </body>
 </html>

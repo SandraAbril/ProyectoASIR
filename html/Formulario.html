@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Registro de Usuario</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 20px;
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    form {
+      max-width: 500px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px;
+      background: #007BFF;
+      color: white;
+      border: none;
+      width: 100%;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Formulario de Registro</h2>
+
+<form action="../php/insertar.php" method="POST">
+  <label for="nombre">Nombre</label>
+  <input type="text" name="nombre" id="nombre" required>
+
+  <label for="Apellidos">Apellidos</label>
+  <input type="text" name="Apellidos" id="Apellidos" required>
+
+  <label for="FechaNacimiento">Fecha de Nacimiento</label>
+  <input type="date" name="FechaNacimiento" id="FechaNacimiento" required>
+
+  <label for="Sexo">Sexo</label>
+  <select name="Sexo" id="Sexo" required>
+    <option value="">Selecciona</option>
+    <option value="0">Femenino</option>
+    <option value="1">Masculino</option>
+  </select>
+
+  <label for="correo">Correo electrónico</label>
+  <input type="email" name="correo" id="correo" required>
+
+  <label for="Contrasena">Contraseña</label>
+  <input type="password" name="Contrasena" id="Contrasena" required>
+
+  <button type="submit">Registrarse</button>
+</form>
+
+</body>
+</html>
