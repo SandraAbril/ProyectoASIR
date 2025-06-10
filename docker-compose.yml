@@ -6,9 +6,9 @@ services:
     ports:
       - "6060:80"
     volumes:
-      - ./src/public:/var/www/html
+      - .:/var/www/html
     environment:
-      APACHE_DOCUMENT_ROOT: /var/www/html/public
+      APACHE_DOCUMENT_ROOT: /var/www/html
     depends_on:
       - db
 
@@ -24,6 +24,7 @@ services:
       - "3307:3306"
     volumes:
       - db_data:/var/lib/mysql
+      - ./init-db/01-create-database.sql:/docker-entrypoint-initdb.d/01-create-database.sql
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin

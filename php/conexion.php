@@ -12,8 +12,10 @@ try {
     ];
 
     $conexion = new PDO($dsn, $user, $pass, $opciones);
-    echo "<p>✅ Conexión exitosa a la base de datos</p>";
+    // Conexión exitosa - no mostrar información sensible en producción
 } catch (PDOException $e) {
-    echo "<p>❌ Error de conexión: " . $e->getMessage() . "</p>";
+    // En producción, registrar en log en lugar de mostrar al usuario
+    error_log("Error de conexión DB: " . $e->getMessage());
+    die("<p>❌ Error de conexión a la base de datos</p>");
 }
 ?>

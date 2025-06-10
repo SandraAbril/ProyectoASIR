@@ -2,81 +2,539 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Registro de Usuario</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crear una cuenta - Primor</title>
+  <link rel="icon" type="image/x-icon" href="../src/FavIcon.jpeg">
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
-      padding: 20px;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-    h2 {
-      text-align: center;
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f8f8f8;
       color: #333;
     }
-    form {
-      max-width: 500px;
-      margin: auto;
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+
+    /* Header de navegación */
+    .top-nav {
+      background-color: #f8f8f8;
+      padding: 8px 0;
+      font-size: 12px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
     }
-    label {
-      display: block;
-      margin-top: 10px;
-      font-weight: bold;
+
+    .top-nav a {
+      color: #666;
+      text-decoration: none;
+      margin: 0 15px;
     }
-    input, select {
-      width: 100%;
-      padding: 8px;
-      margin-top: 5px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-    button {
-      margin-top: 15px;
-      padding: 10px;
-      background: #007BFF;
+
+    /* Header principal */
+    .main-header {
+      background-color: #000;
       color: white;
+      padding: 15px 0;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    .header-search {
+      flex: 1;
+      max-width: 400px;
+      margin: 0 40px;
+      display: flex;
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .header-search input {
+      flex: 1;
       border: none;
-      width: 100%;
-      border-radius: 5px;
+      padding: 10px 15px;
+      outline: none;
+      font-size: 14px;
+    }
+
+    .header-search button {
+      background: none;
+      border: none;
+      padding: 10px 15px;
       cursor: pointer;
     }
-    button:hover {
-      background: #0056b3;
+
+    .header-icons {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .promo-btn {
+      background: #ff0000;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* Menú de navegación */
+    .nav-menu {
+      background-color: #000;
+      padding: 10px 0;
+      border-top: 1px solid #333;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      padding: 0 20px;
+    }
+
+    .nav-container a {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-container a:hover {
+      color: #ff0000;
+    }
+
+    /* Banner promocional */
+    .promo-banner {
+      background: linear-gradient(45deg, #ff0000, #ff4444);
+      color: white;
+      text-align: center;
+      padding: 12px;
+      font-weight: bold;
+      position: relative;
+    }
+
+    .close-banner {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    /* Contenedor del formulario */
+    .form-container {
+      max-width: 500px;
+      margin: 40px auto;
+      background: white;
+      padding: 40px;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .form-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .form-header h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .form-header p {
+      color: #666;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* Estilos del formulario */
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: #333;
+      font-size: 14px;
+    }
+
+    .required::after {
+      content: " *";
+      color: #ff0000;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 0;
+      font-size: 14px;
+      background: #f9f9f9;
+      transition: all 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #000;
+      background: white;
+    }
+
+    .password-container {
+      position: relative;
+    }
+
+    .password-toggle {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #666;
+    }
+
+    .password-strength {
+      margin-top: 5px;
+      font-size: 12px;
+      color: #666;
+    }
+
+    /* Checkboxes */
+    .checkbox-group {
+      margin: 25px 0;
+    }
+
+    .checkbox-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 15px;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .checkbox-item input[type="checkbox"] {
+      width: auto;
+      margin-right: 10px;
+      margin-top: 2px;
+    }
+
+    .checkbox-item a {
+      color: #000;
+      text-decoration: underline;
+    }
+
+    /* Botón de envío */
+    .submit-btn {
+      width: 100%;
+      background: #000;
+      color: white;
+      border: none;
+      padding: 15px;
+      font-size: 16px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .submit-btn:hover {
+      background: #333;
+    }
+
+    .submit-btn:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+
+    /* Enlaces adicionales */
+    .form-footer {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .form-footer a {
+      color: #000;
+      text-decoration: underline;
+      font-size: 14px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .header-search {
+        margin: 0;
+        max-width: 100%;
+      }
+
+      .nav-container {
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .form-container {
+        margin: 20px;
+        padding: 30px 20px;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- Navegación superior -->
+  <div class="top-nav">
+    <a href="#">Tendencias</a>
+    <a href="#">Maquillaje para festivales</a>
+    <a href="#">¡Top Ventas!</a>
+    <a href="#">Formato viaje</a>
+    <a href="#">Rutinas faciales</a>
+    <a href="#">🔥​¡Productos Virales!</a>
+    <a href="#">Perfumes de mujer</a>
+    <a href="#">Perfumes de hombre</a>
+  </div>
 
-<h2>Formulario de Registro</h2>
+  <!-- Header principal -->
+  <header class="main-header">
+    <div class="header-container">
+      <div class="logo">
+        <a href="../index.html">
+          <img src="../src/Logo.jpeg" alt="Logo" style="height: 40px; width: auto;">
+        </a>
+      </div>
+      
+      <div class="header-search">
+        <input type="text" placeholder="Buscar productos">
+        <button>🔍</button>
+      </div>
+      
+      <div class="header-icons">
+        <button class="promo-btn">PROMOCIONES</button>
+        <span>🇪🇸</span>
+        <span>📰</span>
+        <span>📍</span>
+        <span>👤</span>
+        <span>🤍</span>
+        <span>🛍️</span>
+      </div>
+    </div>
+  </header>
 
-<form action="../php/insertar.php" method="POST">
-  <label for="nombre">Nombre</label>
-  <input type="text" name="nombre" id="nombre" required>
+  <!-- Menú de navegación -->
+  <nav class="nav-menu">
+    <div class="nav-container">
+      <a href="#">MARCAS</a>
+      <a href="#">PERFUMES</a>
+      <a href="#">MAQUILLAJE</a>
+      <a href="#">COSMÉTICA</a>
+      <a href="#">CABELLO</a>
+      <a href="#">HIGIENE</a>
+      <a href="#">PARAFARMACIA</a>
+      <a href="#">PRIMOR MAN</a>
+      <a href="#">BEBÉS Y NIÑOS</a>
+      <a href="#">SOLARES</a>
+      <a href="#">ESTUCHES</a>
+      <a href="#">VER MÁS</a>
+    </div>
+  </nav>
 
-  <label for="Apellidos">Apellidos</label>
-  <input type="text" name="Apellidos" id="Apellidos" required>
+  <!-- Banner promocional -->
+  <div class="promo-banner">
+    Disfruta de nuestras OFERTAS FLASH diarias... ¡ENTRAR!
+    <button class="close-banner">×</button>
+  </div>
 
-  <label for="FechaNacimiento">Fecha de Nacimiento</label>
-  <input type="date" name="FechaNacimiento" id="FechaNacimiento" required>
+  <!-- Formulario de registro -->
+  <div class="form-container">
+    <div class="form-header">
+      <h1>Crear una cuenta</h1>
+      <p>Crear una cuenta tiene muchas ventajas: realizar la compra más rápidamente,<br>
+      tener más de una dirección, seguir los pedidos y mucho más.</p>
+    </div>
 
-  <label for="Sexo">Sexo</label>
-  <select name="Sexo" id="Sexo" required>
-    <option value="">Selecciona</option>
-    <option value="0">Femenino</option>
-    <option value="1">Masculino</option>
-  </select>
+    <form action="../php/insertar.php" method="POST" id="registrationForm">
+      <div class="form-group">
+        <label for="nombre" class="required">Nombre</label>
+        <input type="text" name="nombre" id="nombre" required>
+      </div>
 
-  <label for="correo">Correo electrónico</label>
-  <input type="email" name="correo" id="correo" required>
+      <div class="form-group">
+        <label for="Apellidos" class="required">Apellidos</label>
+        <input type="text" name="Apellidos" id="Apellidos" required>
+      </div>
 
-  <label for="Contrasena">Contraseña</label>
-  <input type="password" name="Contrasena" id="Contrasena" required>
+      <div class="form-group">
+        <label for="FechaNacimiento">Fecha de nacimiento</label>
+        <input type="date" name="FechaNacimiento" id="FechaNacimiento">
+      </div>
 
-  <button type="submit">Registrarse</button>
-</form>
+      <div class="form-group">
+        <label for="Sexo">Sexo</label>
+        <select name="Sexo" id="Sexo">
+          <option value="">Seleccionar</option>
+          <option value="0">Femenino</option>
+          <option value="1">Masculino</option>
+        </select>
+      </div>
 
+      <div class="form-group">
+        <label for="correo" class="required">Correo electrónico</label>
+        <input type="email" name="correo" id="correo" required>
+      </div>
+
+      <div class="form-group">
+        <label for="Contrasena" class="required">Contraseña</label>
+        <div class="password-container">
+          <input type="password" name="Contrasena" id="Contrasena" required>
+          <button type="button" class="password-toggle" onclick="togglePassword('Contrasena')">👁️</button>
+        </div>
+        <div class="password-strength">
+          Nivel de Seguridad de la Contraseña: <span id="strength">Sin Contraseña</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="confirmar_contrasena" class="required">Confirmar contraseña</label>
+        <div class="password-container">
+          <input type="password" name="confirmar_contrasena" id="confirmar_contrasena" required>
+          <button type="button" class="password-toggle" onclick="togglePassword('confirmar_contrasena')">👁️</button>
+        </div>
+      </div>
+
+      <div class="checkbox-group">
+        <div class="checkbox-item">
+          <input type="checkbox" id="comunicaciones" name="comunicaciones">
+          <label for="comunicaciones">Quiero recibir comunicaciones comerciales.</label>
+        </div>
+
+        <div class="checkbox-item">
+          <input type="checkbox" id="tratamiento" name="tratamiento" required>
+          <label for="tratamiento">He leído y acepto el tratamiento de mis datos.</label>
+        </div>
+
+        <div class="checkbox-item">
+          <input type="checkbox" id="transferencia" name="transferencia">
+          <label for="transferencia">He leído y acepto la <a href="#">transferencia de datos a entidades colaboradoras</a></label>
+        </div>
+
+        <div class="checkbox-item">
+          <input type="checkbox" id="sms" name="sms">
+          <label for="sms">Quiero recibir comunicaciones comercial vía SMS</label>
+        </div>
+      </div>
+
+      <button type="submit" class="submit-btn">Crear una Cuenta</button>
+    </form>
+
+    <div class="form-footer">
+      <a href="../index.html">Ir al login</a>
+    </div>
+  </div>
+
+  <script>
+    // Toggle password visibility
+    function togglePassword(fieldId) {
+      const field = document.getElementById(fieldId);
+      const button = field.nextElementSibling;
+      
+      if (field.type === 'password') {
+        field.type = 'text';
+        button.textContent = '🙈';
+      } else {
+        field.type = 'password';
+        button.textContent = '👁️';
+      }
+    }
+
+    // Password strength indicator
+    document.getElementById('Contrasena').addEventListener('input', function() {
+      const password = this.value;
+      const strengthIndicator = document.getElementById('strength');
+      
+      if (password.length === 0) {
+        strengthIndicator.textContent = 'Sin Contraseña';
+        strengthIndicator.style.color = '#666';
+      } else if (password.length < 6) {
+        strengthIndicator.textContent = 'Débil';
+        strengthIndicator.style.color = '#ff0000';
+      } else if (password.length < 10) {
+        strengthIndicator.textContent = 'Media';
+        strengthIndicator.style.color = '#ff8800';
+      } else {
+        strengthIndicator.textContent = 'Fuerte';
+        strengthIndicator.style.color = '#00aa00';
+      }
+    });
+
+    // Confirm password validation
+    document.getElementById('confirmar_contrasena').addEventListener('input', function() {
+      const password = document.getElementById('Contrasena').value;
+      const confirmPassword = this.value;
+      
+      if (confirmPassword && password !== confirmPassword) {
+        this.setCustomValidity('Las contraseñas no coinciden');
+      } else {
+        this.setCustomValidity('');
+      }
+    });
+
+    // Form submission validation
+    document.getElementById('registrationForm').addEventListener('submit', function(e) {
+      const password = document.getElementById('Contrasena').value;
+      const confirmPassword = document.getElementById('confirmar_contrasena').value;
+      const tratamiento = document.getElementById('tratamiento').checked;
+      
+      if (password !== confirmPassword) {
+        e.preventDefault();
+        alert('Las contraseñas no coinciden');
+        return;
+      }
+      
+      if (!tratamiento) {
+        e.preventDefault();
+        alert('Debes aceptar el tratamiento de datos para continuar');
+        return;
+      }
+    });
+
+    // Close banner
+    document.querySelector('.close-banner').addEventListener('click', function() {
+      document.querySelector('.promo-banner').style.display = 'none';
+    });
+  </script>
 </body>
 </html>
