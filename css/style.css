@@ -137,6 +137,13 @@ header {
 
 .icon {
   font-size: 18px;
+  color: white;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.icon:hover {
+  transform: scale(1.2);
 }
 
 .icon.hidden {
