@@ -30,6 +30,7 @@
       gap: 10px;
       position: relative;
       overflow-x: hidden;
+      justify-content: center;
     }
 
     .top-bar .label {
@@ -77,14 +78,23 @@
 
     /* Header principal */
     .main-header {
+      width: 100%;
       background-color: #000;
       color: white;
+      margin: 0;
+      padding: 0;
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 15px 20px;
       flex-wrap: wrap;
       gap: 10px;
+      box-sizing: border-box;
     }
 
     .header-left img {
@@ -171,6 +181,8 @@
       background-color: #000;
       padding: 15px 0;
       border-top: 1px solid #333;
+      width: 100%;
+      margin: 0;
     }
 
     .nav-container {
@@ -178,9 +190,17 @@
       margin: 0 auto;
       display: flex;
       justify-content: center;
-      gap: 40px;
+      gap: 20px;
       padding: 0 20px;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      box-sizing: border-box;
+    }
+
+    .nav-container::-webkit-scrollbar {
+      display: none;
     }
 
     .nav-container a {
@@ -202,10 +222,21 @@
       background: linear-gradient(45deg, #ff0000, #ff4444);
       color: white;
       text-align: center;
-      padding: 12px;
+      padding: 0;
       font-weight: bold;
       position: relative;
       font-size: 14px;
+      width: 100%;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    .promo-banner .promo-texto {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 12px 20px;
+      box-sizing: border-box;
+      text-align: center;
     }
 
     .close-banner {
@@ -237,12 +268,18 @@
     }
 
     .brands-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-      gap: 20px;
-      justify-items: center;
+      display: flex;
+      flex-direction: row;
+      overflow-x: auto;
+      gap: 16px;
+      padding: 30px 0;
+      width: 100%;
+      scrollbar-width: none;      /* Firefox */
+      -ms-overflow-style: none;   /* IE y Edge */
+    }
+
+    .brands-container::-webkit-scrollbar {
+      display: none;              /* Chrome, Safari y Opera */
     }
 
     .brand-item {
@@ -259,14 +296,14 @@
     }
 
     .brand-circle {
-      width: 70px;
-      height: 70px;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 8px;
-      font-size: 12px;
+      margin-bottom: 6px;
+      font-size: 10px;
       font-weight: bold;
       text-align: center;
       line-height: 1.2;
@@ -275,7 +312,7 @@
     }
 
     .brand-text {
-      font-size: 11px;
+      font-size: 9px;
       text-align: center;
       font-weight: 500;
       text-transform: uppercase;
@@ -303,11 +340,8 @@
 
     /* Banner de promociones */
     .promo-main-banner {
-      background: linear-gradient(135deg, #8e44ad, #c71585);
-      color: white;
-      padding: 80px 20px;
-      position: relative;
-      overflow: hidden;
+      padding: 0;
+      background: none;
     }
 
     .promo-content {
@@ -521,6 +555,277 @@
     .promo-btn.active .arrow-icon {
       transform: rotate(180deg);
     }
+
+    .header-content,
+    .nav-container,
+    .promo-banner .promo-texto {
+      width: 100%;
+      margin: 0 auto;
+      padding-left: 5vw;
+      padding-right: 5vw;
+      box-sizing: border-box;
+    }
+
+    .carousel-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 40px auto 0 auto;
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      box-sizing: border-box;
+    }
+    .carousel {
+      display: flex;
+      transition: transform 0.5s cubic-bezier(.4,0,.2,1);
+      will-change: transform;
+    }
+    .carousel-slide {
+      min-width: 100%;
+      box-sizing: border-box;
+      user-select: none;
+    }
+    .carousel-slide img {
+      width: 100%;
+      display: block;
+      border-radius: 12px;
+      pointer-events: none;
+    }
+    .carousel-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.4);
+      color: #fff;
+      border: none;
+      font-size: 2rem;
+      padding: 0 16px;
+      cursor: pointer;
+      z-index: 2;
+      border-radius: 50%;
+      transition: background 0.2s;
+    }
+    .carousel-arrow:hover {
+      background: rgba(0,0,0,0.7);
+    }
+    .carousel-arrow.left { left: 10px; }
+    .carousel-arrow.right { right: 10px; }
+    @media (max-width: 900px) {
+      .carousel-container { max-width: 98vw; }
+    }
+
+    .promo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      max-width: 1200px;
+      margin: 60px auto 0 auto;
+      padding: 0 20px;
+    }
+    .promo-grid a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+      padding: 0;
+      min-height: unset;
+      text-decoration: none;
+      transition: none;
+    }
+    .promo-grid a:hover {
+      border: none;
+      box-shadow: none;
+    }
+    .promo-grid img {
+      max-width: 320px;
+      max-height: 90px;
+      width: auto;
+      height: auto;
+      display: block;
+    }
+    @media (max-width: 900px) {
+      .promo-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .promo-grid { grid-template-columns: 1fr; }
+    }
+
+    .carousel-productos-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 60px auto 60px auto;
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      box-sizing: border-box;
+      background: #fff;
+      box-shadow: 0 2px 16px 0 rgba(0,0,0,0.04);
+    }
+    .carousel-productos {
+      display: flex;
+      transition: transform 0.5s cubic-bezier(.4,0,.2,1);
+      will-change: transform;
+    }
+    .carousel-producto-slide {
+      min-width: 20%;
+      box-sizing: border-box;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 0;
+    }
+    .carousel-producto-slide a {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    .carousel-producto-slide img {
+      width: 120px;
+      max-width: 90vw;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+    .carousel-productos-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.12);
+      color: #222;
+      border: none;
+      font-size: 2.2rem;
+      padding: 0 16px;
+      cursor: pointer;
+      z-index: 2;
+      border-radius: 50%;
+      transition: background 0.2s;
+    }
+    .carousel-productos-arrow:hover {
+      background: rgba(0,0,0,0.25);
+    }
+    .carousel-productos-arrow.left { left: 10px; }
+    .carousel-productos-arrow.right { right: 10px; }
+    @media (max-width: 900px) {
+      .carousel-producto-slide { min-width: 33.33%; }
+    }
+    @media (max-width: 600px) {
+      .carousel-producto-slide { min-width: 100%; }
+    }
+
+    .seccion-regalo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 60px;
+      max-width: 1200px;
+      margin: 80px auto 60px auto;
+      padding: 0 20px;
+      background: #fafbfc;
+      border-radius: 16px;
+    }
+    .seccion-regalo-img {
+      flex: 1 1 320px;
+      min-width: 220px;
+      max-width: 400px;
+    }
+    .seccion-regalo-img img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .seccion-regalo-texto {
+      flex: 1 1 320px;
+      min-width: 220px;
+      text-align: left;
+      color: #111;
+    }
+    .seccion-regalo-texto h2 {
+      font-size: 2.8rem;
+      font-weight: 600;
+      margin-bottom: 18px;
+      margin-top: 0;
+    }
+    .seccion-regalo-texto p {
+      font-size: 1.5rem;
+      margin-bottom: 32px;
+      margin-top: 0;
+    }
+    .seccion-regalo-texto a {
+      font-size: 1.2rem;
+      color: #111;
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 2px solid #ff2222;
+      padding-bottom: 2px;
+      transition: color 0.2s;
+    }
+    .seccion-regalo-texto a:hover {
+      color: #d00;
+    }
+    @media (max-width: 900px) {
+      .seccion-regalo { flex-direction: column; gap: 30px; text-align: center; }
+      .seccion-regalo-texto { text-align: center; }
+    }
+
+    .footer-ventajas {
+      max-width: 1200px;
+      margin: 40px auto 0 auto;
+      padding: 0 10px 20px 10px;
+      text-align: center;
+    }
+    .footer-ventajas h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      margin-top: 0;
+    }
+    .footer-ventajas-list {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: nowrap;
+    }
+    .footer-ventaja {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      min-width: 0;
+      max-width: 260px;
+      text-align: left;
+    }
+    .footer-ventaja img {
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .footer-ventaja-txt {
+      display: flex;
+      flex-direction: column;
+    }
+    .footer-ventaja-txt strong {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+    .footer-ventaja-txt span {
+      font-size: 0.95rem;
+      color: #222;
+    }
+    @media (max-width: 900px) {
+      .footer-ventajas-list { gap: 12px; }
+      .footer-ventaja { max-width: 180px; }
+      .footer-ventaja-txt strong { font-size: 0.95rem; }
+      .footer-ventaja-txt span { font-size: 0.9rem; }
+    }
+    @media (max-width: 700px) {
+      .footer-ventajas-list { flex-wrap: wrap; gap: 18px; }
+      .footer-ventaja { max-width: 100%; }
+    }
   </style>
 </head>
 <body>
@@ -549,6 +854,7 @@
 
     <!-- Header principal -->
     <header class="main-header">
+      <div class="header-content">
         <div class="header-left">
           <a href="./index.html">
             <img src="src/Logo.jpeg" alt="Logo" width="160" height="60">
@@ -580,6 +886,7 @@
             <span class="icon">🛍️</span>
           </div>
         </div>
+      </div>
     </header>
 
     <!-- Menú de navegación -->
@@ -602,8 +909,10 @@
 
     <!-- Banner promocional -->
     <div class="promo-banner">
-        Disfruta de nuestras OFERTAS FLASH diarias... ¡ENTRAR!
+      <div class="promo-texto">
+        10% dto. virales - Código: EXTRA - ¡ENTRAR!
         <button class="close-banner">×</button>
+      </div>
     </div>
 
     <!-- Sección de marcas circulares -->
@@ -684,38 +993,206 @@
         </div>
     </section>
 
-    <!-- Banner principal de promociones -->
-    <section class="promo-main-banner">
-        <div class="promo-content">
-            <div class="promo-text">
-                <div class="promo-percentage">%</div>
-                <div class="promo-hashtag">#Promos</div>
-                <div class="promo-subtitle">primor.eu</div>
-                <div class="promo-subtitle">Descubre las mejores promos del mes</div>
-                <a href="#" class="promo-cta">ENTRAR</a>
-            </div>
-            <div class="promo-side-text">
-                <div class="promo-site-only">Solo en<br>Primor.</div>
-            </div>
-        </div>
-    </section>
+    <!-- Imagen de virales -->
+    <div style="width:100%;margin:40px 0 0 0;">
+      <img src="src/11-06_VIRALES_-_ES-BANNER_HOME-_Desktop_-_2300x600.png" alt="Promoción Virales" style="width:100%; display:block; max-width:100vw; height:auto;">
+    </div>
 
-    <!-- Sección del perfume LIBRE -->
-    <section class="perfume-section">
-        <div class="perfume-content">
-            <div class="perfume-image"></div>
-            <div class="perfume-text">
-                <div class="perfume-brand">LIBRE</div>
-                <div class="perfume-subtitle">YVES SAINT LAURENT</div>
-                <div class="perfume-description">
-                    EL ORIGINAL. EAU DE PARFUM<br>
-                    Una nueva expresión de la libertad femenina
-                </div>
-            </div>
+    <!-- Carrusel de imágenes -->
+    <div class="carousel-container">
+      <button class="carousel-arrow left" aria-label="Anterior">&#8249;</button>
+      <div class="carousel">
+        <div class="carousel-slide"><img src="src/49_YSL_frag_WEB_Slider_principal_y_secundario_home_1_2025_banner__YSL1992x520px_PRIMOR_1.png" alt="YSL"></div>
+        <div class="carousel-slide"><img src="src/KENZO_LEAU_PURE_PRIMOR_slider_home_secundario_Desktop_1992x520.png" alt="Kenzo"></div>
+        <div class="carousel-slide"><img src="src/Davidoff_CE_Primor_1992x520px_CTA_GWP.png" alt="Davidoff"></div>
+        <div class="carousel-slide"><img src="src/_EL_W24_Primor_BannerHome_1992x520.png" alt="EL"></div>
+        <div class="carousel-slide"><img src="src/PRIMOR_Clarins_1992x520_3.png" alt="Clarins"></div>
+        <div class="carousel-slide"><img src="src/NIVEA_SUN_PRIMOR_Regalo-neceser_1992x520px_1_1.png" alt="Nivea"></div>
+      </div>
+      <button class="carousel-arrow right" aria-label="Siguiente">&#8250;</button>
+    </div>
+
+    <div class="promo-grid">
+      <a href="#"><img src="src/es-d_flash.png" alt="Ofertas Flash"></a>
+      <a href="#"><img src="src/es-d_new.png" alt="Nuevos Productos"></a>
+      <a href="#"><img src="src/es-d_top.png" alt="Top Ventas"></a>
+      <a href="#"><img src="src/es-d_promos.png" alt="Promociones Activas"></a>
+      <a href="#"><img src="src/es-d_outlet.png" alt="Outlet"></a>
+      <a href="#"><img src="src/es-d_gifts.png" alt="Regalos por compra"></a>
+    </div>
+
+    <div class="carousel-container" style="margin-top:60px;">
+      <button class="carousel-arrow left" aria-label="Anterior">&#8249;</button>
+      <div class="carousel">
+        <div class="carousel-slide"><img src="src/GIVENCHY_Linterdit_Irresistible_PRIMOR_Slider_Secundario_Home_Desktop_1992x520.png" alt="Givenchy"></div>
+        <div class="carousel-slide"><img src="src/LNC_SB_Primor_1992x520_GWP_1.png" alt="LNC"></div>
+        <div class="carousel-slide"><img src="src/BANNER_DESKTOP_PRIMOR_1_.png" alt="Banner Primor"></div>
+        <div class="carousel-slide"><img src="src/Avene_1992x520_-_v1.png" alt="Avene"></div>
+        <div class="carousel-slide"><img src="src/Banner-desktop-secundario-home-Arganour-piel-glow-1992x520.png" alt="Arganour"></div>
+        <div class="carousel-slide"><img src="src/PRIMOR_Byphase_1992X520.png" alt="Byphase"></div>
+      </div>
+      <button class="carousel-arrow right" aria-label="Siguiente">&#8250;</button>
+    </div>
+
+    <div style="width:100%;margin:60px 0 0 0;display:flex;justify-content:center;">
+      <img src="src/apartadoFLASH_1_.png" alt="Apartado Flash" style="width:520px; max-width:95vw; display:block; height:auto;">
+    </div>
+    <div style="max-width:900px;margin:32px auto 60px auto;text-align:center;font-size:1.1rem;color:#222;line-height:1.5;">
+      Consigue descuentos extra en tus productos favoritos. <b>¡Solo durante 24 horas!</b>
+    </div>
+
+    <div class="carousel-productos-container">
+      <button class="carousel-productos-arrow left" aria-label="Anterior">&#8249;</button>
+      <div class="carousel-productos">
+        <div class="carousel-producto-slide"><a href="#"><img src="src/20714795689CliniqueProd_1_15cd.png" alt="Clinique"></a></div>
+        <div class="carousel-producto-slide"><a href="#"><img src="src/0TS03058BiothermProd_1_975c.png" alt="Biotherm"></a></div>
+        <div class="carousel-producto-slide"><a href="#"><img src="src/M_4AM02436HalloweenProd_1_b4dd.png" alt="Halloween"></a></div>
+        <div class="carousel-producto-slide"><a href="#"><img src="src/M_4AF05066VersaceProd_1_910d.png" alt="Versace"></a></div>
+        <div class="carousel-producto-slide"><a href="#"><img src="src/730b464GuyLarocheProd_336036__1_.png" alt="Guy Laroche"></a></div>
+        <div class="carousel-producto-slide"><a href="#"><img src="src/0MO22543UrbanDecayProd_1_0cd4.png" alt="Urban Decay"></a></div>
+        <div class="carousel-producto-slide"><a href="#"><img src="src/0TF21786EstéeLauder2_1_c3f0.png" alt="Estée Lauder"></a></div>
+        <div class="carousel-producto-slide"><a href="#"><img src="src/679602133128PoliceProd_1_5b09.png" alt="Police"></a></div>
+        <div class="carousel-producto-slide"><a href="#"><img src="src/3614273262484Biotherm2Prod_1_6561.png" alt="Biotherm 2"></a></div>
+        <div class="carousel-producto-slide"><a href="#"><img src="src/3614273556187Prada_1_a927.png" alt="Prada"></a></div>
+        <div class="carousel-producto-slide"><a href="#"><img src="src/M_4AM01467RobertoCaballiProd_1_9206.png" alt="Roberto Cavalli"></a></div>
+        <div class="carousel-producto-slide"><a href="#"><img src="src/M_4AM01456Versace2_1_bc05.png" alt="Versace 2"></a></div>
+      </div>
+      <button class="carousel-productos-arrow right" aria-label="Siguiente">&#8250;</button>
+    </div>
+
+    <div style="width:100%;text-align:center;margin:32px 0 60px 0;">
+      <a href="#" style="font-size:1.1rem;color:#111;text-decoration:none;font-weight:500;border-bottom:3px solid #ff2222;padding-bottom:2px;transition:color 0.2s;">Ir a Ofertas Flash</a>
+    </div>
+
+    <div class="seccion-regalo">
+      <div class="seccion-regalo-img">
+        <img src="src/Imagen_tarjeta_regalo538_2x-1.png" alt="Tarjeta Regalo Primor">
+      </div>
+      <div class="seccion-regalo-texto">
+        <h2>REGALA PRIMOR</h2>
+        <p>Compra nuestra tarjeta de regalo digital y despreocúpate!</p>
+        <a href="#">QUIERO REGALAR</a>
+      </div>
+    </div>
+
+    <footer class="footer-ventajas">
+      <h3>Nuestras ventajas</h3>
+      <div class="footer-ventajas-list">
+        <div class="footer-ventaja">
+          <img src="src/icon-shop-65-centered.png" alt="Buscar una tienda">
+          <div class="footer-ventaja-txt">
+            <strong>Buscar una tienda</strong>
+            <span>Encuentra una tienda cerca de ti y prueba nuestros productos</span>
+          </div>
         </div>
-    </section>
+        <div class="footer-ventaja">
+          <img src="src/icon-shipping-65-centered.png" alt="Envío gratuito">
+          <div class="footer-ventaja-txt">
+            <strong>Envío gratuito</strong>
+            <span>A partir de 25€ en pedidos online o 15€ si lo recoges en tienda</span>
+          </div>
+        </div>
+        <div class="footer-ventaja">
+          <img src="src/icon-refund-65-centered.png" alt="Garantía de devolución">
+          <div class="footer-ventaja-txt">
+            <strong>Garantía de devolución</strong>
+            <span>14 días para devoluciones si cumplen condiciones establecidas</span>
+          </div>
+        </div>
+        <div class="footer-ventaja">
+          <img src="src/icon-lock-65-centered.png" alt="Pago seguro & 1-Click Shopping">
+          <div class="footer-ventaja-txt">
+            <strong>Pago seguro & 1-Click Shopping</strong>
+            <span>Rápido, seguro y sin costes ocultos</span>
+          </div>
+        </div>
+      </div>
+    </footer>
 
 <script src="./js/script.js"></script>
 <script src="./js/BotonPromos.js"></script>
+<script>
+(function() {
+  // Autoplay para los dos primeros carruseles
+  const containers = document.querySelectorAll('.carousel-container');
+  const carousels = document.querySelectorAll('.carousel');
+  carousels.forEach((carousel, idx) => {
+    const slides = carousel.querySelectorAll('.carousel-slide');
+    const prevBtn = containers[idx].querySelector('.carousel-arrow.left');
+    const nextBtn = containers[idx].querySelector('.carousel-arrow.right');
+    let current = 0;
+    let interval;
+    function showSlide(i) {
+      carousel.style.transform = `translateX(-${i * 100}%)`;
+    }
+    function nextSlide() {
+      current = (current + 1) % slides.length;
+      showSlide(current);
+    }
+    function prevSlide() {
+      current = (current - 1 + slides.length) % slides.length;
+      showSlide(current);
+    }
+    function startAutoplay() {
+      interval = setInterval(nextSlide, 3500);
+    }
+    function stopAutoplay() {
+      clearInterval(interval);
+    }
+    prevBtn.addEventListener('click', () => { prevSlide(); stopAutoplay(); startAutoplay(); });
+    nextBtn.addEventListener('click', () => { nextSlide(); stopAutoplay(); startAutoplay(); });
+    // Swipe support
+    let startX = 0;
+    let isDown = false;
+    carousel.addEventListener('touchstart', e => { isDown = true; startX = e.touches[0].clientX; stopAutoplay(); });
+    carousel.addEventListener('touchend', e => { isDown = false; startAutoplay(); });
+    carousel.addEventListener('touchmove', e => {
+      if (!isDown) return;
+      let dx = e.touches[0].clientX - startX;
+      if (Math.abs(dx) > 50) { if (dx > 0) prevSlide(); else nextSlide(); isDown = false; }
+    });
+    showSlide(current);
+    startAutoplay();
+  });
+
+  // Carrusel de productos (sin autoplay)
+  const container = document.querySelector('.carousel-productos-container');
+  const carousel = container.querySelector('.carousel-productos');
+  const slides = container.querySelectorAll('.carousel-producto-slide');
+  const prevBtn = container.querySelector('.carousel-productos-arrow.left');
+  const nextBtn = container.querySelector('.carousel-productos-arrow.right');
+  let current = 0;
+  const visible = window.innerWidth <= 600 ? 1 : (window.innerWidth <= 900 ? 3 : 5);
+  function showSlide(idx) {
+    carousel.style.transform = `translateX(-${idx * (100/visible)}%)`;
+  }
+  function nextSlide() {
+    if (current < slides.length - visible) {
+      current++;
+      showSlide(current);
+    }
+  }
+  function prevSlide() {
+    if (current > 0) {
+      current--;
+      showSlide(current);
+    }
+  }
+  prevBtn.addEventListener('click', prevSlide);
+  nextBtn.addEventListener('click', nextSlide);
+  // Swipe support
+  let startX = 0;
+  let isDown = false;
+  carousel.addEventListener('touchstart', e => { isDown = true; startX = e.touches[0].clientX; });
+  carousel.addEventListener('touchend', e => { isDown = false; });
+  carousel.addEventListener('touchmove', e => {
+    if (!isDown) return;
+    let dx = e.touches[0].clientX - startX;
+    if (Math.abs(dx) > 50) { if (dx > 0) prevSlide(); else nextSlide(); isDown = false; }
+  });
+  showSlide(current);
+  window.addEventListener('resize', () => { location.reload(); });
+})();
+</script>
 </body>
 </html>
